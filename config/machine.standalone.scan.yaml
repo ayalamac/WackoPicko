@@ -1,0 +1,45 @@
+# * WACKOPICKO - MACHINE STANDALONE SCAN CONFIGURATION FILE
+# Archivo de configuración para el proyecto WackoPicko,
+# utilizando el escáner Machine Standalone de Fluid Attacks.
+
+# * DOCS:
+# https://help.fluidattacks.com/portal/en/kb/articles/run-scans-locally-or-in-your-ci-cd
+# https://help.fluidattacks.com/portal/en/kb/articles/configure-the-tests-by-the-standalone-scanner
+
+# ----------------------------------------------------------
+
+# Especifica el espacio de nombres para el escaneo.
+namespace: wackopicko
+
+# Especifica el directorio de trabajo para el escaneo.
+working_dir: .
+
+# Habilita el modo estricto para el escaneo, 
+# lo que significa que el escaneo fallará,
+# devolviendo como código de salida 1, si se detecta algún problema.
+strict: true
+
+# Especifica el idioma para las notificaciones realizadas por el escaneo.
+language: ES
+
+# Configura los ajustes de SCA (Análisis Estático de Código)
+sca:
+  include:
+    - .
+  exclude:
+    - glob(**/test/)
+
+# Configura los ajustes de SAST (Pruebas de Seguridad de Aplicaciones Estáticas)
+sast:
+  include:
+    - .
+  exclude:
+    - glob(**/node_modules/**)
+    - glob(**/test/**)
+
+# Configura los ajustes de salida
+# (No debería ser excluyente, es decir, debería poderse configurar más de un tipo de salida: en pantalla y a la vez en archivo)
+# Para este caso, se configura la salida en archivo y el pipeline persiste el archivo de salida como un artefacto en Github Actions.
+output:
+  file_path: ./security-check-results.csv
+  format: CSV

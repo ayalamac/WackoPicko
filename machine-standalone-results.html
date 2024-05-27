@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+    <title>Reporte de Vulnerabilidades - Fluid Attacks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xM6B5z6W5" crossorigin="anonymous">
+    <style>
+        :root {
+            --red: #BF0B1A;
+            --gray: #789;
+        }
+
+        a {
+            color: var(--gray);
+            font-weight: bold;
+
+            &:hover {
+                color: var(--red);
+            }
+        }
+
+        .bg-fa-red {
+            background-color: var(--red);
+        }
+
+        .bg-aa-gray {
+            background-color: var(--gray);
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: var(--red);
+            color: white;
+        }
+
+        h1,h2,h3 {
+            margin-top: 3rem;
+            font-weight: bold;
+        }
+
+        .cvss-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            li {
+                background: #f0f0f0;
+                padding: 0.2rem 0.5rem;
+                border-radius: 0.5rem;
+            }
+        }
+
+        .code {
+            background-color: #123;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            overflow-x: auto;       }
+            pre {
+                color: #789;
+                margin: 0;
+                font-family: consolas, monospace;
+                font-size: 1rem;
+
+                .hightlight {
+                    color: #fff;
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="col col-md-12 p-3">
+            
+            <h1>Reporte de Vulnerabilidades</h1>
+            <h2>Resumen</h2>
+            <p>Se han encontrado vulnerabilidades en el análisis realizado con el scanner Machine Standalone. Este es un ejemplo de reporte a nivel académico, solamente se presentan las primeras 7 vulnerabilidades.</p>
+
+            <table>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>CWE</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#1">
+                        418. Insecure service configuration - Docker</a>
+                    </td>
+                    <td>CWE-16</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="#2">
+                        418. Insecure service configuration - Docker</a>
+                    </td>
+                    <td>CWE-16</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><a href="#3">
+                        418. Insecure service configuration - Docker</a>
+                    </td>
+                    <td>CWE-16</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><a href="#4">
+                        266. Excessive Privileges - Docker</a>
+                    </td>
+                    <td>CWE-250</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><a href="#5">
+                        437. Supply Chain Attack - GitHub Actions</a>
+                    </td>
+                    <td>CWE-693</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><a href="#6">
+                        405. Excessive privileges - Access Mode</a>
+                    </td>
+                    <td>CWE-732</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><a href="#7">
+                        380. Supply Chain Attack - Docker</a>
+                    </td>
+                    <td>CWE-749</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Es solo un ejemplo de reporte posible con su tabla de contenido al inicio. Solamente los primeros 7 registros se muestran.</td>
+                </tr>
+                
+            </table>
+
+            <hr class="my-5">
+
+            <div class="vulnerability">
+                <h3 id="1">418. Insecure service configuration - Docker</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-16</span></p>
+                <p>El uso de comando ADD para extraer archivos automáticamente al directorio de destino agrega el riesgo de explotar vulnerabilidades como zip bombs y Zip Slip que luego podrían activarse automáticamente. en wackopicko/Dockerfile</p>
+
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>UI:N</li>
+                    <li>S:U</li>
+                    <li>C:N</li>
+                    <li>I:L</li>
+                    <li>A:N</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:C</li>
+                </ul>
+
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>AT:N</li>
+                    <li>UI:N</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>VC:N</li>
+                    <li>VI:L</li>
+                    <li>VA:N</li>
+                    <li>E:U</li>
+                </ul>
+
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/418">https://docs.fluidattacks.com/criteria/vulnerabilities/418</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+
+                <div class="code">
+                    <pre>
+1 | FROM tutum/lamp
+2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+3 |
+4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+5 | RUN rm -fr /app
+6 | COPY website /app
+7 | RUN chmod 777 /app/upload
+8 |
+9 | COPY current.sql .
+10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+11 | ADD php.ini /etc/php5/apache2/php.ini
+<span class="hightlight">> 12 | ADD php.ini /etc/php5/cli/php.ini</span>
+13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+15 | RUN chmod 755 /*.sh</pre>
+                </div>
+
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">docker.docker_using_add_command</span> 
+                </p>
+            </div>
+
+            <div class="vulnerability">
+                <h3 id="2">418. Insecure service configuration - Docker</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-16</span></p>
+                <p>El uso de comando ADD para extraer archivos automáticamente al directorio de destino agrega el riesgo de explotar vulnerabilidades como zip bombs y Zip Slip que luego podrían activarse automáticamente. en wackopicko/Dockerfile</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>UI:N</li>
+                    <li>S:U</li>
+                    <li>C:N</li>
+                    <li>I:L</li>
+                    <li>A:N</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:C</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>AT:N</li>
+                    <li>UI:N</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>VC:N</li>
+                    <li>VI:L</li>
+                    <li>VA:N</li>
+                    <li>E:U</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/418">https://docs.fluidattacks.com/criteria/vulnerabilities/418</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            1 | FROM tutum/lamp
+            2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+            3 |
+            4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+            5 | RUN rm -fr /app
+            6 | COPY website /app
+            7 | RUN chmod 777 /app/upload
+            8 |
+            9 | COPY current.sql .
+            10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+            <span class="hightlight">> 11 | ADD php.ini /etc/php5/apache2/php.ini</span>
+            12 | ADD php.ini /etc/php5/cli/php.ini
+            13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+            14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+            15 | RUN chmod 755 /*.sh</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">docker.docker_using_add_command</span>
+                </p>
+            </div>
+
+
+            <div class="vulnerability">
+                <h3 id="3">418. Insecure service configuration - Docker</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-16</span></p>
+                <p>El uso de comando ADD para extraer archivos automáticamente al directorio de destino agrega el riesgo de explotar vulnerabilidades como zip bombs y Zip Slip que luego podrían activarse automáticamente. en wackopicko/Dockerfile</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>UI:N</li>
+                    <li>S:U</li>
+                    <li>C:N</li>
+                    <li>I:L</li>
+                    <li>A:N</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:C</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>AT:N</li>
+                    <li>UI:N</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>VC:N</li>
+                    <li>VI:L</li>
+                    <li>VA:N</li>
+                    <li>E:U</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/418">https://docs.fluidattacks.com/criteria/vulnerabilities/418</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            1 | FROM tutum/lamp
+            2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+            3 |
+            4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+            5 | RUN rm -fr /app
+            6 | COPY website /app
+            7 | RUN chmod 777 /app/upload
+            8 |
+            9 | COPY current.sql .
+            <span class="hightlight">> 10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh</span>
+            11 | ADD php.ini /etc/php5/apache2/php.ini
+            12 | ADD php.ini /etc/php5/cli/php.ini
+            13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+            14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+            15 | RUN chmod 755 /*.sh</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">docker.docker_using_add_command</span>
+                </p>
+            </div>
+            
+            
+            <div class="vulnerability">
+                <h3 id="4">266. Excessive Privileges - Docker</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-250</span></p>
+                <p>No se encontró ningún comando para la creación de un grupo o usuario, asegúrese de que el contenedor este corriendo como non-root en wackopicko/Dockerfile</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:L</li>
+                    <li>PR:L</li>
+                    <li>UI:N</li>
+                    <li>S:U</li>
+                    <li>C:L</li>
+                    <li>I:L</li>
+                    <li>A:L</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:C</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:L</li>
+                    <li>AT:N</li>
+                    <li>PR:L</li>
+                    <li>UI:N</li>
+                    <li>VC:L</li>
+                    <li>VI:L</li>
+                    <li>VA:L</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>E:U</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/266">https://docs.fluidattacks.com/criteria/vulnerabilities/266</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            <span class="hightlight">> 1 | FROM tutum/lamp</span>
+            2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+            3 |
+            4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+            5 | RUN rm -fr /app
+            6 | COPY website /app
+            7 | RUN chmod 777 /app/upload
+            8 |
+            9 | COPY current.sql .
+            10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+            11 | ADD php.ini /etc/php5/apache2/php.ini
+            12 | ADD php.ini /etc/php5/cli/php.ini
+            13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+            14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+            15 | RUN chmod 755 /*.sh</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">docker.container_without_user</span>
+                </p>
+            </div>
+
+
+            <div class="vulnerability">
+                <h3 id="5">437. Supply Chain Attack - GitHub Actions</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-693</span></p>
+                <p>Las acciones de GitHub no están bloqueadas a una revisión específica. en wackopicko/.github/workflows/dev.yml</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:N</li>
+                    <li>AC:H</li>
+                    <li>PR:L</li>
+                    <li>UI:R</li>
+                    <li>S:U</li>
+                    <li>C:N</li>
+                    <li>I:L</li>
+                    <li>A:N</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:R</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:N</li>
+                    <li>AC:H</li>
+                    <li>AT:N</li>
+                    <li>PR:L</li>
+                    <li>UI:P</li>
+                    <li>VC:N</li>
+                    <li>VI:L</li>
+                    <li>VA:N</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>E:U</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/437">https://docs.fluidattacks.com/criteria/vulnerabilities/437</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            1 | # .github/workflows/dev.yml
+            2 | name: Chequeos de Seguridad (Machine Standalone)
+            3 | on: [push, pull_request]
+            4 | jobs:
+            5 |   machine-standalone-security-checks:
+            6 |     runs-on: ubuntu-latest
+            7 |     steps:
+            8 |       - uses: actions/checkout@b80ff79f1755d06ba70441c368a6fe801f5f3a62
+            9 |       - run: git config --global --add safe.directory /github/workspace
+            <span class="hightlight">> 10 |       - uses: docker://docker.io/fluidattacks/cli:latest</span>
+            11 |         name: Ejecutar análisis de seguridad
+            12 |         with:
+            13 |           args: skims scan config/machine.standalone.scan.yaml
+            14 |
+            15 |       - name: Imprimir el resultado del análisis
+            16 |         if: always()
+            17 |         run: cat ./security-check-results.csv
+            18 |
+            19 |       - name: Renombrar el archivo de resultados
+            20 |         if: always()
+            21 |         run: mv ./security-check-results.csv ./security-check-results-#${{ github.run_number }}.csv</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">github_actions.github_actions_without_hash</span>
+                </p>
+            </div>
+
+
+            <div class="vulnerability">
+                <h3 id="6">405. Excessive privileges - Access Mode</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-732</span></p>
+                <p>Los archivos o directorios del sistema cuentan con un modo de acceso demasiado permisivo. en wackopicko/Dockerfile</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:L</li>
+                    <li>PR:N</li>
+                    <li>UI:N</li>
+                    <li>S:U</li>
+                    <li>C:L</li>
+                    <li>I:L</li>
+                    <li>A:L</li>
+                    <li>E:P</li>
+                    <li>RL:O</li>
+                    <li>RC:C</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:L</li>
+                    <li>AC:L</li>
+                    <li>AT:N</li>
+                    <li>PR:N</li>
+                    <li>UI:N</li>
+                    <li>VC:L</li>
+                    <li>VI:L</li>
+                    <li>VA:L</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>E:P</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/405">https://docs.fluidattacks.com/criteria/vulnerabilities/405</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            1 | FROM tutum/lamp
+            2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+            3 |
+            4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+            5 | RUN rm -fr /app
+            6 | COPY website /app
+            <span class="hightlight">>  7 | RUN chmod 777 /app/upload</span>
+            8 |
+            9 | COPY current.sql .
+            10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+            11 | ADD php.ini /etc/php5/apache2/php.ini
+            12 | ADD php.ini /etc/php5/cli/php.ini
+            13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+            14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+            15 | RUN chmod 755 /*.sh</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">bash.excessive_privileges_for_others</span>
+                </p>
+            </div>
+            
+            
+            <div class="vulnerability">
+                <h3 id="7">380. Supply Chain Attack - Docker</h3>
+                <p><span class="badge badge-pill badge-primary bg-fa-red">CWE-749</span></p>
+                <p>Las dependencias de Docker no están pineadas a un digest específico en wackopicko/Dockerfile</p>
+            
+                <h4>CVSS</h4>
+                <strong>CVSS:3.1:</strong>
+                <ul class="cvss-list">
+                    <li>AV:N</li>
+                    <li>AC:H</li>
+                    <li>PR:N</li>
+                    <li>UI:R</li>
+                    <li>S:U</li>
+                    <li>C:N</li>
+                    <li>I:L</li>
+                    <li>A:N</li>
+                    <li>E:U</li>
+                    <li>RL:O</li>
+                    <li>RC:R</li>
+                </ul>
+            
+                <strong>CVSS:4.0</strong>
+                <ul class="cvss-list">
+                    <li>AV:N</li>
+                    <li>AC:H</li>
+                    <li>AT:N</li>
+                    <li>PR:N</li>
+                    <li>UI:P</li>
+                    <li>VC:N</li>
+                    <li>VI:L</li>
+                    <li>VA:N</li>
+                    <li>SC:N</li>
+                    <li>SI:N</li>
+                    <li>SA:N</li>
+                    <li>E:U</li>
+                </ul>
+            
+                <p>Información de soporte: <a target="_blank" rel="noopener noreferrer" href="https://docs.fluidattacks.com/criteria/vulnerabilities/380">https://docs.fluidattacks.com/criteria/vulnerabilities/380</a></p>
+                <p>Detalles de la vulnerabilidad en el código:</p>
+            
+                <div class="code">
+                    <pre>
+            <span class="hightlight">>  1 | FROM tutum/lamp</span>
+            2 | MAINTAINER Adam Doupe <adamdoupe@gmail.com>
+            3 |
+            4 | RUN apt-get update && apt-get install -y libgd-dev php5-gd
+            5 | RUN rm -fr /app
+            6 | COPY website /app
+            7 | RUN chmod 777 /app/upload
+            8 |
+            9 | COPY current.sql .
+            10 | ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+            11 | ADD php.ini /etc/php5/apache2/php.ini
+            12 | ADD php.ini /etc/php5/cli/php.ini
+            13 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_worker.conf
+            14 | RUN sed -i 's/150/250/g' /etc/apache2/mods-available/mpm_prefork.conf
+            15 | RUN chmod 755 /*.sh</pre>
+                </div>
+            
+                <p class="mt-3 tags">
+                    Tags: <span class="d-inline-block bg-light p-1 rounded font-weight-bold text-secondary">docker.unpinned_docker_image</span>
+                </p>
+            </div>
+
+            
+            
+            
+            
+
+
+        </div>
+    </div>
+    
+</body>
+</html>

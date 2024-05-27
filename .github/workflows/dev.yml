@@ -1,0 +1,27 @@
+# .github/workflows/dev.yml
+name: Chequeos de Seguridad (Machine Standalone)
+on: [push, pull_request]
+jobs:
+  machine-standalone-security-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b80ff79f1755d06ba70441c368a6fe801f5f3a62
+      - uses: docker://docker.io/fluidattacks/cli:latest
+        name: Ejecutar análisis de seguridad
+        with:
+          args: skims scan config/machine.standalone.scan.yaml
+
+      - name: Imprimir el resultado del análisis
+        if: always()
+        run: cat ./security-check-results.csv
+
+      - name: Renombrar el archivo de resultados
+        if: always()
+        run: mv ./security-check-results.csv ./security-check-results-#${{ github.run_number }}.csv
+
+      - uses: actions/upload-artifact@552bf3722c16e81001aea7db72d8cedf64eb5f68
+        name: Crear artefacto con el resultado del análisis (archivo CSV)
+        if: always()
+        with:
+          name: 'Resultados del análisis de seguridad (SCA y SAST) #${{ github.run_number }}'
+          path: ./security-check-results-#${{ github.run_number }}.csv
